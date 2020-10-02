@@ -1,8 +1,8 @@
-<suite name="Suite" parallel="false" thread-count="5" >
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite" parallel="false" thread-count="1" >
     <test name="SampleTest001">
         <classes>
-            <class/>
-
+            <class name="testscript.SampleTest001"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
