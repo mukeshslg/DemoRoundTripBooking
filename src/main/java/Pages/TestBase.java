@@ -13,9 +13,11 @@ import utility.ReadProp;
 
 
 public class TestBase {
-    WebDriver driver;
+    public WebDriver driver;
     ReadProp rp;
     String baseUrl;
+    public LoginPage loginPage;
+    public HomePage homePage;
     @BeforeSuite
     public void setup(){
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + File.separator + "resource" + File.separator + "chromedriver_mac");
@@ -27,6 +29,8 @@ public class TestBase {
     @BeforeTest
     public void LaunchBrowser(){
         driver.get(rp.getProperty("baseURL"));
+        loginPage=new LoginPage(driver);
+        homePage=new HomePage(driver);
     }
     @AfterSuite
     public void cleanUp(){
