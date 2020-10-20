@@ -12,14 +12,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.ReadProp;
 
-public class LoginPage {
+public class SearchPage {
     WebDriver driver;
     ReadProp rp;
-    public static Logger log = Logger.getLogger(LoginPage.class);
+    public static Logger log = Logger.getLogger(SearchPage.class);
     private String uname;
     private String pass;
 
-    public LoginPage(WebDriver driver) {
+    public SearchPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         rp=new ReadProp("resource/config.properties");
@@ -49,10 +49,13 @@ public class LoginPage {
     @FindBy(id = "SearchBtn")
     WebElement searchBtn;
 
+    @FindBy(xpath = "//button[text()='Book']")
+    WebElement bookTicket;
+
     /**
      * @author Mukesh
      */
-    public void loginToCT(){
+    public void loadCT(){
         userName.sendKeys(uname);
         password.sendKeys(pass);
         loginBtn.click();
@@ -63,7 +66,9 @@ public class LoginPage {
      * @author Mukesh
      */
     public void searchFlight(String source,String destination ) throws InterruptedException {
+
         roundTrip.click();
+        fromPlace.sendKeys(Keys.ESCAPE);
         fromPlace.sendKeys(source);
         Thread.sleep(1500);
         fromPlace.sendKeys(Keys.ENTER);
@@ -77,10 +82,16 @@ public class LoginPage {
         Thread.sleep(1000);
         toDate.click();
         searchBtn.click();
+    }
 
 
-
-       // new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("")));
+    /**
+     *
+     * @throws InterruptedException
+     */
+    public void BookFlightTicket() throws InterruptedException {
+        new WebDriverWait(driver,20).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Book']")));
+        bookTicket.click();
     }
 
 }

@@ -3,7 +3,6 @@ package Pages;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import org.aspectj.lang.annotation.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
@@ -16,8 +15,8 @@ public class TestBase {
     public WebDriver driver;
     ReadProp rp;
     String baseUrl;
-    public LoginPage loginPage;
-    public HomePage homePage;
+    public SearchPage searchPage;
+    public TicketBookingPage ticketBookingPage;
     @BeforeSuite
     public void setup(){
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + File.separator + "resource" + File.separator + "chromedriver_mac");
@@ -29,8 +28,8 @@ public class TestBase {
     @BeforeTest
     public void LaunchBrowser(){
         driver.get(rp.getProperty("baseURL"));
-        loginPage=new LoginPage(driver);
-        homePage=new HomePage(driver);
+        searchPage =new SearchPage(driver);
+        ticketBookingPage =new TicketBookingPage(driver);
     }
     @AfterSuite
     public void cleanUp(){

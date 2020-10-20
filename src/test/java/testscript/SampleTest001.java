@@ -1,9 +1,6 @@
 package testscript;
 
 import Pages.TestBase;
-import common.CommonMethods;
-import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SampleTest001 extends TestBase {
@@ -15,7 +12,8 @@ public class SampleTest001 extends TestBase {
      */
     @Test
     public void TestFaceBookAndPost() throws InterruptedException {
-        loginPage.loginToCT();
+        //loginPage.loadCT();
+        searchPage.searchFlight("bangalore","chennai");
 
 
     }
