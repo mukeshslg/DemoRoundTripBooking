@@ -12,9 +12,9 @@ public class SampleTest001 extends TestBase {
      */
     @Test
     public void TestFaceBookAndPost() throws InterruptedException {
-        //loginPage.loadCT();
         searchPage.searchFlight("bangalore","chennai");
 
 
     }
+
 }

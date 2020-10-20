@@ -1,8 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Suite" parallel="false" thread-count="1" >
-    <test name="SampleTest001">
+    <test name="SampleTest001" >
         <classes>
-            <class name="testscript.SampleTest001"/>
+            <class name="testscript.SampleTest001" >
+                <methods>
+                    <include name="TestFaceBookAndPost"/>
+                </methods>
+            </class>        
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import utility.ReadProp;
@@ -25,7 +26,7 @@ public class TestBase {
         rp=new ReadProp("resource/config.properties");
     }
 
-    @BeforeTest
+    @BeforeMethod
     public void LaunchBrowser(){
         driver.get(rp.getProperty("baseURL"));
         searchPage =new SearchPage(driver);
