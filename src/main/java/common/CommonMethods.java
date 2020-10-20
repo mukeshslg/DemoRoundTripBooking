@@ -13,14 +13,15 @@ public class CommonMethods {
      * switch to child window
      * @param driver
      */
-    public static void switchToChildWindow(WebDriver driver){
-        String currentWindow=driver.getWindowHandle();
+    public static void switchToChildWindow(WebDriver driver,String currentWindow){
+
         Set<String> s=driver.getWindowHandles();
         Iterator<String> it=s.iterator();
         while (it.hasNext()){
             String strNewWindow=it.next();
-            if (strNewWindow!=currentWindow)
+            if (strNewWindow!=currentWindow){
                 driver.switchTo().window(strNewWindow);
+            }
         }
     }
 

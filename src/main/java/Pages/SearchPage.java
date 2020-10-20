@@ -1,8 +1,13 @@
 package Pages;
 
 
+import java.security.Key;
+
+import common.CommonMethods;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,22 +21,14 @@ public class SearchPage {
     WebDriver driver;
     ReadProp rp;
     public static Logger log = Logger.getLogger(SearchPage.class);
-    private String uname;
-    private String pass;
 
     public SearchPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         rp=new ReadProp("resource/config.properties");
-        uname =rp.getProperty("username");
-        pass=rp.getProperty("password");
+
     }
-    @FindBy(id = "email")
-    WebElement userName;
-    @FindBy(id = "pass")
-    WebElement password;
-    @FindBy(name = "login")
-    WebElement loginBtn;
+
     @FindBy(id = "RoundTrip")
     WebElement roundTrip;
     @FindBy(id = "FromTag")
@@ -52,28 +49,21 @@ public class SearchPage {
     @FindBy(xpath = "//button[text()='Book']")
     WebElement bookTicket;
 
-    /**
-     * @author Mukesh
-     */
-    public void loadCT(){
-        userName.sendKeys(uname);
-        password.sendKeys(pass);
-        loginBtn.click();
-        new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Mukesh Sah']")));
-    }
+
 
     /**
      * @author Mukesh
      */
     public void searchFlight(String source,String destination ) throws InterruptedException {
-
         roundTrip.click();
+        Thread.sleep(2000);
         fromPlace.sendKeys(Keys.ESCAPE);
         fromPlace.sendKeys(source);
-        Thread.sleep(1500);
+
+        new WebDriverWait(driver,20).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"ui-id-1\"]/li[1]")));
         fromPlace.sendKeys(Keys.ENTER);
         ToPlace.sendKeys(destination);
-        Thread.sleep(1500);
+        new WebDriverWait(driver,20).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"ui-id-2\"]/li[1]")));
         ToPlace.sendKeys(Keys.ENTER);
         FirstDatePickerIcon.click();
         Thread.sleep(1000);
@@ -86,12 +76,16 @@ public class SearchPage {
 
 
     /**
-     *
+     *  bookFlightTicketAndSwitchToNewWindow
      * @throws InterruptedException
      */
-    public void BookFlightTicket() throws InterruptedException {
-        new WebDriverWait(driver,20).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Book']")));
+    public void bookFlightTicketAndSwitchToNewWindow() throws InterruptedException {
+        Thread.sleep(15000);
+        //WebElement element=new WebDriverWait(driver,30).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Book']")));
+        String currentWindow=driver.getWindowHandle();
         bookTicket.click();
+        Thread.sleep(15000);
+        CommonMethods.switchToChildWindow(driver,currentWindow);
     }
 
 }
