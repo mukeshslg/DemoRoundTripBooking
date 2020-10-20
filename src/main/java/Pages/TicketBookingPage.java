@@ -54,12 +54,12 @@ public class TicketBookingPage {
      */
     public void bookTicket() throws InterruptedException {
 
-        new WebDriverWait(driver,20).until(ExpectedConditions.elementToBeClickable(By.id("itineraryBtn")));
+        new WebDriverWait(driver,30).until(ExpectedConditions.elementToBeClickable(By.id("itineraryBtn")));
         continueBookingBtn.click();
         Thread.sleep(2000);
         emailAddress.sendKeys("abc@gmail.com");
         continueBookingEmailBtn.click();
-        new WebDriverWait(driver,20).until(ExpectedConditions.invisibilityOfElementLocated(By.id("LoginContinueBtn_1")));
+        new WebDriverWait(driver,30).until(ExpectedConditions.invisibilityOfElementLocated(By.id("LoginContinueBtn_1")));
         Thread.sleep(3000);
         Select s=new Select(title);
         s.selectByVisibleText("Mr");
@@ -71,7 +71,7 @@ public class TicketBookingPage {
          */
         enterDOB();
         nationality.sendKeys("India");
-        new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOf(autoCompleteValueNationality));
+        new WebDriverWait(driver,30).until(ExpectedConditions.visibilityOf(autoCompleteValueNationality));
         nationality.sendKeys(Keys.ENTER);
         travellerContinueBtn.click();
 
