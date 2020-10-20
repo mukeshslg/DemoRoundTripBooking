@@ -4,7 +4,7 @@
         <classes>
             <class name="testscript.SampleTest001" >
                 <methods>
-                    <include name="TestFaceBookAndPost"/>
+                    <include name="TestClearTripAndBookTicket"/>
                 </methods>
             </class>        
         </classes>
