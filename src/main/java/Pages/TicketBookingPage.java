@@ -60,6 +60,7 @@ public class TicketBookingPage {
         emailAddress.sendKeys("abc@gmail.com");
         continueBookingEmailBtn.click();
         new WebDriverWait(driver,20).until(ExpectedConditions.invisibilityOfElementLocated(By.id("LoginContinueBtn_1")));
+        Thread.sleep(3000);
         Select s=new Select(title);
         s.selectByVisibleText("Mr");
         adultFirstName.sendKeys("John");
