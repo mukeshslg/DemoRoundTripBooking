@@ -1,10 +1,13 @@
 package Pages;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.ReadProp;
 
 public class TicketBookingPage {
@@ -21,7 +24,14 @@ public class TicketBookingPage {
     WebElement continueBookingBtn;
 
 
-
+    /**
+     *
+     * @throws InterruptedException
+     */
+    public void BookTicket() throws InterruptedException {
+        new WebDriverWait(driver,20).until(ExpectedConditions.elementToBeClickable(By.id("itineraryBtn")));
+        continueBookingBtn.click();
+    }
 
 
 }

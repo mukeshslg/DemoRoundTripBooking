@@ -1,5 +1,8 @@
 package common;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -21,14 +24,16 @@ public class CommonMethods {
     }
 
     /**
-     * click element by xpath
-     * @param dr
-     * @param xpathXpression
+     * switch To Window
+     *
      */
-    public static void clickElementByXpath(WebDriver dr, String xpathXpression){
-        WebElement elePostBtn=new WebDriverWait(dr,20)
-                .until(ExpectedConditions.elementToBeClickable(By.xpath(xpathXpression)));
-        elePostBtn.click();
+    public static void switchToChildWindow(WebDriver driver){
+        String currentWindow=driver.getWindowHandle();
+        Set<String> s=driver.getWindowHandles();
+        Iterator<String> it=s.iterator();
+        while (it.hasNext()){
+            String str=it.next();
+        }
     }
 
 }
